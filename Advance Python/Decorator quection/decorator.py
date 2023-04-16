@@ -108,4 +108,29 @@ def say_hello():
     print("Hello!")
 
 
-MyDecorator(say_hello)()
+# method 4 Calling decorator method
+
+
+class MyDecorator2:
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, first):
+        print("Before function is called.")
+        print(self.render())
+        self.func(first)
+        print("After function is called.")
+        return 0
+
+    def render(self):
+
+        return "Render method called"
+
+
+@MyDecorator2
+def say_hello2(first):
+    print("Hello!", first)
+    return "First method"
+
+
+say_hello2("hello")
