@@ -15,7 +15,7 @@ def mainPage():
 
 # If we are giving post method then user need to give only post method
 # for routing
-@app.route("/helloworld", methods=["post", "get"])
+@app.route("/helloworld", methods=["post"])
 def startUsingHello():
     return "<h1>Hello world</h1>"
 # By default get method is present in the API
