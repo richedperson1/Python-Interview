@@ -21,8 +21,10 @@ Jinja Templates
 1. It look like python only
 2. Special delimiters are present in jinja so that every expression writen in right way
 
-    a. {{}}  : Expression for output [act as placeholder for value]
-    b. {% %} : Expression for control flow statement like [if ,else, for]
+    a. {{}}  : Expression for output [act as placeholder for value].
+    b. {% %} : Expression for control flow statement like [if ,else, for].
+    c. {# #} : Adding comment in the jinja template it will not visible in user side 
+               only visible at programmers side.
 """
 
 
