@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main>
+    <style>
+        .items {
+            border-bottom: 2px solid black;
+            margin: 25px 0;
+        }
+
+        p.condition {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            text-align: center;
+        }
+    </style>
+    <div class="items">
+        {% for i in range(5) %}
+        {% if('Rutvik' in context['userName'] ) %}
+        <h2> User Name for {{ i }} is : {{context.userName[1]}}</h2>
+
+        {% set context.userName = 5 %}
+        <p>My password for {{ i }} is : <span class="passkey">{{ context.password }}</span></p>
+        <br>
+        {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="items">
+        <p class="condition">Condition base data</p>
+        {% for i in range(10) %}
+        {% if(i==5) %}
+        <h2> User Name for {{ i }} is : {{context.userName[1]}}</h2>
+        <p>My password for {{ i }} is : <span class="passkey">{{ context.password }}</span></p>
+        <br>
+        {% endif %}
+
+        {% endfor %}
+
+    </div>
+</main>
+{% endblock %}
