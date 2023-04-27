@@ -19,7 +19,6 @@
         {% if('Rutvik' in context['userName'] ) %}
         <h2> User Name for {{ i }} is : {{context.userName[1]}}</h2>
 
-        {% set context.userName = 5 %}
         <p>My password for {{ i }} is : <span class="passkey">{{ context.password }}</span></p>
         <br>
         {% endif %}
@@ -41,5 +40,26 @@
         {% endfor %}
 
     </div>
+    <div class="expression-in-jinja">
+        <p class="condition">Condition base data</p>
+        {% for i in range(range(5)|reverse|max )%}
+        {% if i is eq 3 %}
+        <p>My Number is :{{ i }} I like <span class="passkey">{{ context.password }}</span></p>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <input type="number" name="AgeEnter" id="ageID">
+    <script>
+
+        const input = document.getElementById("ageID");
+        const threshold = 10;
+
+        input.addEventListener("change", function () {
+            if (input.value < threshold) {
+                alert("Input is below threshold!");
+            }
+        });
+
+    </script>
 </main>
 {% endblock %}
