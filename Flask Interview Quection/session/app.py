@@ -1,6 +1,6 @@
 from flask import session, redirect, url_for, render_template, Flask, request
 from flask_caching import *
-from flask_cachecontrol import *
+# from flask_cachecontrol import *
 
 app = Flask(__name__)
 
@@ -36,16 +36,26 @@ def after_request(response):
     return response
 
 
-@app.route("/home", methods=['POST', 'GET'])
+@app.route("/home", methods=["GET"])
 def homePage():
+    if request.method=="GET":
+        if "username" in session:
+            return render_template("index.html")
+        else:
+            return redirect(url_for("homeIndex"))
 
-    return render_template("index.html")
 
+@app.route("/greeting")
+def greetingForOther():
+    if "username" in session:
+        return "<h1> Hello my self Rutvik</h1>"
+    return redirect(url_for("homeIndex"))
+    
 
 @app.route("/logOut", methods=["POST", 'GET'])
 def logoutBtn():
     if request.method == "POST":
-        session.clear()
+        session.pop("username")
         return redirect(url_for("homeIndex"))
 
     session.clear()
