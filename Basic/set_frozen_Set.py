@@ -26,5 +26,5 @@ dist = {}
 arr = [1, 2, 3, 4, 4]
 FrozeArr = frozenset(arr)
 
-dist[frozenset] = 5
+dist[FrozeArr] = 5
 print(dist)

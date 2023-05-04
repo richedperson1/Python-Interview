@@ -1,4 +1,4 @@
-from flask import session, redirect, url_for, render_template, Flask, request
+from flask import session, redirect, url_for, render_template, Flask, request,abort
 from flask_caching import *
 # from flask_cachecontrol import *
 
@@ -23,6 +23,10 @@ def homeIndex():
         return render_template("loginPage.html")
 
     else:
+        # string = request.args.get("user")
+        # if string=="ru":
+        #     print("--"*10,"mission aborted")
+        #     abort(400)
         if "username" in session:
             return redirect(url_for("homePage"))
         return render_template("loginPage.html")
@@ -63,5 +67,14 @@ def logoutBtn():
     return redirect(url_for("homeIndex"))
 
 
+@app.route("/redirectHTML")
+def redirectPage():
+    return render_template("redirected_page.html")
+
+@app.route("/redirect_fun")
+def redirect_fun():
+    res = redirectPage()
+    return res
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host="0.0.0.0")
