@@ -16,8 +16,8 @@ def homeIndex():
         passWord = request.form["password"]
         print("Username", "--"*5, userName)
         print("passWord", "--"*5, passWord)
-        session["username"] = "Rutvik Jaiswal"
-        if userName == "ru" and passWord == "12":
+        session["username"] = passWord
+        if passWord == "12":
             return redirect(url_for("homePage"))
 
         return render_template("loginPage.html")
