@@ -7,9 +7,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Jupyter notebook
+*.ipynb*
 # C extensions
 *.so
-
 # Distribution / packaging
 .Python
 build/

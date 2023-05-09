@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Page</title>
+    <style>
+        /* Styling for the form */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Registration Page</h1>
+    <form action="/addingData" method="post">
+        <table>
+            <tr>
+                <td><label for="email">Email:</label> </td>
+
+                <td>
+                    <input type="text" id="email" name="email" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="first-name">First Name:</label>
+                </td>
+                <td>
+                    <input type="text" id="first-name" name="first-name" required>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="last-name">Last Name:</label>
+                </td>
+                <td>
+                    <input type="text" id="last-name" name="last-name" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <label for="password">Password:</label>
+                </td>
+
+                <td>
+
+                    <input type="password" id="password" name="password" required>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <!-- <a href=""></a> -->
+                    <input type="submit" value="Register">
+                </td>
+            </tr>
+
+
+        </table>
+    </form>
+    <script>
+        // Handle form submission
+        const form = document.getElementById('registration-form');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // prevent default form submission behavior
+            // const email = document.getElementById('email').value;
+            // const firstName = document.getElementById('first-name').value;
+            // const lastName = document.getElementById('last-name').value;
+            // const password = document.getElementById('password').value;
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>
