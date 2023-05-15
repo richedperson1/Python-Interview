@@ -6,17 +6,29 @@ app = Flask(__name__)
 app.secret_key = "asjdfkjasndckjshdf"
 
 connection = sqlite3.connect("first.db")
-
 # connection.execute("DROP TABLE STUDENT")
 connection.execute("CREATE TABLE IF NOT EXISTS STUDENT(email TEXT,first_name TEXT,last_name TEXT,password text)")
+connection.close()
 
-
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers.add(
+        'Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0')
+    return response
 
 @app.route("/")
 def homePage():
     if "username" in session:
-        return "Home page"
+        return render_template("home_page.html")
     return redirect(url_for("loginPage"))
+
+
+@app.route("/logOut")
+def logOutFun():
+    session.pop("username")
+    return redirect(url_for("homePage"))
+
 
 @app.route("/login")
 def loginPage():
@@ -41,6 +53,29 @@ def autheticationPage():
 @app.route("/registration")
 def registration():
     return render_template("registration.html")
+
+@app.route("/showData")
+def showData():
+    if "username" in session:
+        final = ""
+        ans = []
+        with sqlite3.connect("first.db") as conn:
+            conn.row_factory = sqlite3.Row
+
+            cursor = conn.cursor()
+
+            query = "select * from STUDENT"
+            cursor.execute(query)
+            final1 = cursor.fetchall()
+            for tt in final1:
+                for t1 in tt:
+                    ans.append(t1)
+                print(tt)
+        if ans!=[] or ans!="":
+            return str(ans)
+        return "Not found data yet"
+    return redirect(url_for("homePage"))
+
 
 @app.route("/addingData",methods = ["post"])
 def addingStudent():
