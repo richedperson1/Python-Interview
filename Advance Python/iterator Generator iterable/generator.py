@@ -22,11 +22,14 @@ Multiple time generator called
 
 
 def generate_num():
-    i = 1
+    i = 0
     while True:
+        yield i**2
         i += 1
-        return i
 
 
 square_num_Gen = generate_num()
-print(square_num_Gen)
+print(next(square_num_Gen))
+print(next(square_num_Gen))
+print(next(square_num_Gen))
+print(next(square_num_Gen))
