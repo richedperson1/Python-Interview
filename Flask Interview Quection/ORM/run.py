@@ -5,7 +5,7 @@ from sqlalchemy import create_engine,TIMESTAMP
 import requests
 from datetime import datetime
 # from test import adding2db
-from flask_migrate import Migrate, MigrateCommand
+from flask_migrate import Migrate
 from orm import folder_info
 from db import db
 import sys
@@ -14,18 +14,17 @@ sys.dont_write_bytecode = True
 # Add this line to enable Flask-Migrate commands in the Flask CLI
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///testing.db'  # SQLite database file
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 # db.init_app(app)
 # migrate = Migrate(app, db)
 app.register_blueprint(simple_page)
 # # migrate.init_app(app)
 app.app_context().push()
-
+migrate = Migrate(app, db)
 # migrate = Migrate(app, db)
 # migrate.init_app(app)
-# app.cli.add_command("db",MigrateCommand)
+app.cli.add_command("db",MigrateCommand)
 
 with app.app_context():
     db.create_all()
@@ -62,6 +61,8 @@ def add_folder():
     return jsonify({'message': 'Owner added successfully'}), 201
 
 
+
+@app.route("/")
 def testing_reponse():
     return "Hello world"
 
