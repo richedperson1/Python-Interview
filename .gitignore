@@ -10,7 +10,7 @@ __pycache__/
 
 pratices/
 # Jupyter notebook
-*.ipynb*
+test.ipynb*
 # C extensions
 *.so
 # Distribution / packaging
