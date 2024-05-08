@@ -6,7 +6,7 @@ class Parent(ABC):
         return "This is main function"
     
     @abstractmethod
-    def sequrity(self):
+    def security(self):
         pass
     
     
@@ -14,15 +14,15 @@ class child(Parent):
     def child_main(self):
         return "Not found"
     
-    def sequrity(self):
+    def security(self):
         first = "hello"
         second = "not found"
         return first+ second
     
     
 obj = child()
-pObj = Parent()
-
+# pObj = Parent()
+print(child.__mro__)
 
 
 
